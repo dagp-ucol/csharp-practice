@@ -9,7 +9,7 @@ namespace CoreEscuela.Entidades
     {
         public string UniqueId { get; private set; }
         public string Name { get; set; }
-        public string Worktime { get; set; }
+        public WorktimeTypes Worktime { get; set; }
 
         public Course()
         {
