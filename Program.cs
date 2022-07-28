@@ -25,11 +25,28 @@ class Program
         };
 
         escuela.Courses.Add( new Course() { Name = "Hola", Worktime = WorktimeTypes.Tarde } );
+        Course tmp = new Course{ Name = "Vacacionales" };
+        escuela.Courses.Add(tmp);
         escuela.Courses.AddRange(otrCol);
+        
+        otrCol.Clear();
+        ImprimirCursosEscuela(escuela);
+
+        // Eliminar
+        
+        // escuela.Courses.Remove(tmp);
+        // Eliminar con predicado
+        Predicate<Course> predFunction = predicado;
+        escuela.Courses.RemoveAll(predicado);
 
         // Ctrl + .
         ImprimirCursosEscuela(escuela);
 
+    }
+
+    private static bool predicado(Course obj)
+    {
+        return obj.Name == "301";
     }
 
     private static void ImprimirCursosEscuela(Escuela escuela)
