@@ -5,16 +5,12 @@ using System.Threading.Tasks;
 
 namespace CoreEscuela.Entidades
 {
-    public class Course
+    public class Asignatura
     {
         public string UniqueId { get; private set; }
         public string Name { get; set; }
-        public WorktimeTypes Worktime { get; set; }
-        public List<Asignatura> Asignaturas { get; set; }
-        public List<Alumno> Alumnos { get; set; }
         
-
-        public Course()
+        public Asignatura()
         {
             UniqueId = Guid.NewGuid().ToString();
         }

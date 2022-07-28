@@ -13,8 +13,31 @@ namespace CoreEscuela
 
         public void Init()
         {
-            Escuela = new Escuela(name: "Platzi Academy", age: 2012, country: "Mexico", city: "Colima");    
+            Escuela = new Escuela(name: "Platzi Academy", age: 2012, country: "Mexico", city: "Colima");
 
+            CargarCursos();
+            CargarAlumnos();
+            CargarAsignaturas();
+            CargarEvaluaciones();
+        }
+
+        private void CargarEvaluaciones()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CargarAsignaturas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CargarAlumnos()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CargarCursos()
+        {
             Escuela.Courses = new List<Course>()
             {
                 new Course {  Name = "101" },
@@ -25,7 +48,6 @@ namespace CoreEscuela
                 new Course {  Name = "302" }
             };
         }
-
     }
 
 }
