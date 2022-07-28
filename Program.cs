@@ -3,6 +3,7 @@
 using System;
 using CoreEscuela;
 using CoreEscuela.Entidades;
+using CoreEscuela.Util;
 
 class Program
 {
@@ -17,8 +18,10 @@ class Program
 
     private static void ImprimirCursosEscuela(Escuela escuela)
     {
-        Console.WriteLine("==================");
-        Console.WriteLine("Cursos de la escuela");
+        string title = $"| Cursos de la escuela \"{escuela.Name}\" |";
+        Printer.DibujarLinea(title.Length);
+        Console.WriteLine(title);
+        Printer.DibujarLinea(title.Length);
 
         if (escuela != null && escuela.Courses != null)
         {            
