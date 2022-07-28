@@ -1,7 +1,7 @@
 namespace CoreEscuela.Entidades
 {
 
-    class Escuela
+    public class Escuela
     {
         public string Name { get; set; }
         public int FoundationAge { get; set; }

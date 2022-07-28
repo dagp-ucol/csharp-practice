@@ -25,6 +25,7 @@ class Program
         };
 
         escuela.Courses.Add( new Course() { Name = "Hola", Worktime = WorktimeTypes.Tarde } );
+
         Course tmp = new Course{ Name = "Vacacionales" };
         escuela.Courses.Add(tmp);
         escuela.Courses.AddRange(otrCol);
@@ -35,12 +36,19 @@ class Program
         // Eliminar
         
         // escuela.Courses.Remove(tmp);
-        // Eliminar con predicado
-        Predicate<Course> predFunction = predicado;
-        escuela.Courses.RemoveAll(predicado);
+
+        escuela.Courses.RemoveAll( delegate (Course cur) 
+        {
+            return cur.Name == "301";
+        });
+
+        escuela.Courses.RemoveAll((Course cur) => cur.Name == "30111");
 
         // Ctrl + .
         ImprimirCursosEscuela(escuela);
+
+        // Eliminar con predicado
+        Predicate<Course> predFunction = predicado;
 
     }
 
