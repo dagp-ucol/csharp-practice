@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {        
         var engine = new EscuelaEngine();
-        engine.Init();
+        engine.Inicializar();
         ImprimirCursosEscuela(engine.Escuela);
     }
 

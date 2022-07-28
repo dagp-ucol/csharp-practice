@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using CoreEscuela.Entidades;
 
 namespace CoreEscuela
@@ -11,14 +14,14 @@ namespace CoreEscuela
 
         }
 
-        public void Init()
+        public void Inicializar()
         {
-            Escuela = new Escuela(name: "Platzi Academy", age: 2012, country: "Mexico", city: "Colima");
+            Escuela = new Escuela("Platzi Academay", 2012);
 
             CargarCursos();
-            CargarAlumnos();
             CargarAsignaturas();
             CargarEvaluaciones();
+
         }
 
         private void CargarEvaluaciones()
@@ -28,28 +31,50 @@ namespace CoreEscuela
 
         private void CargarAsignaturas()
         {
-            throw new NotImplementedException();
+            foreach (var curso in Escuela.Courses)
+            {
+                var listaAsignaturas = new List<Asignatura>(){
+                            new Asignatura{Name="Matemáticas"} ,
+                            new Asignatura{Name="Educación Física"},
+                            new Asignatura{Name="Castellano"},
+                            new Asignatura{Name="Ciencias Naturales"}
+                };
+                curso.Asignaturas = listaAsignaturas;
+            }
         }
 
-        private void CargarAlumnos()
+        private List<Alumno> GenerarAlumnosAlAzar( int cantidad)
         {
-            throw new NotImplementedException();
+            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
+            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
+            string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
+
+            var listaAlumnos =  from n1 in nombre1
+                                from n2 in nombre2
+                                from a1 in apellido1
+                                select new Alumno{ Name=$"{n1} {n2} {a1}" };
+            
+            return listaAlumnos.OrderBy( (al)=> al.UniqueId ).Take(cantidad).ToList();
         }
 
         private void CargarCursos()
         {
-            Escuela.Courses = new List<Course>()
-            {
-                new Course {  Name = "101" },
-                new Course {  Name = "201" },
-                new Course {  Name = "301" },
-                new Course {  Name = "102" },
-                new Course {  Name = "202" },
-                new Course {  Name = "302" }
+            Escuela.Courses = new List<Course>(){
+                        new Course(){ Name = "101", Worktime = WorktimeTypes.Mañana },
+                        new Course() {Name = "201", Worktime = WorktimeTypes.Mañana},
+                        new Course{Name = "301", Worktime = WorktimeTypes.Mañana},
+                        new Course(){ Name = "401", Worktime = WorktimeTypes.Tarde },
+                        new Course() {Name = "501", Worktime = WorktimeTypes.Tarde},
             };
+            
+            Random rnd = new Random();
+            foreach(var c in Escuela.Courses)
+            {
+                int cantRandom = rnd.Next(5, 20);
+                c.Alumnos = GenerarAlumnosAlAzar(cantRandom);
+            }
         }
     }
-
 }
 
 ///
